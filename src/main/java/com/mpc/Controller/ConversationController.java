@@ -1,5 +1,8 @@
 package com.mpc.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mpc.Entity.Subtopic;
 import com.mpc.JsonEntity.Response;
 import com.mpc.ServiceInterFace.ConversationServiceInterFace;
 
@@ -26,13 +30,19 @@ public class ConversationController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView firstPage() {
 		model.setViewName("Conversation/index");
-		/*model.addObject("conversationInfo", 
+		model.addObject("conversationInfo", 
 				conversationServiceInterFace.findAllConversionInfoOrderByDate());
 		model.addObject("conversationTopicInfo", 
 				conversationServiceInterFace.findAllConversionTopicInfo());
-		model.addObject("conversationTopicInfo", 
-				conversationServiceInterFace.findAllConversionSubTopicInfo());*/
 		return model;
+	}
+	
+	@RequestMapping(value = "/findSubTopicsByTopicId", method = RequestMethod.POST)
+	public @ResponseBody String findSubTopicsByTopicId(
+			@RequestParam(value = "topicId", required = true) Integer topicId)
+	{
+		System.out.println("topicId "+ topicId);
+		return conversationServiceInterFace.findSubTopicsByTopicId(topicId).toString();
 	}
 	
 	@RequestMapping(value = "/addConversation", method = RequestMethod.POST)

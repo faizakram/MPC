@@ -39,7 +39,7 @@
 		<beans:property name="jdbcUrl"
 			value="jdbc:mysql://localhost:3306/mpc?autoReconnect=true" />
 		<beans:property name="user" value="root" />
-		<beans:property name="password" value="root"/>
+		<beans:property name="password" value="admin"/>
 		<beans:property name="initialPoolSize" value="5" />
 		<beans:property name="minPoolSize" value="5" />
 		<beans:property name="maxPoolSize" value="100" />

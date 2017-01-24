@@ -79,6 +79,12 @@ public class ConversationServiceImplemaintation implements ConversationServiceIn
 		return conversationDAOInterFace.findAllCommentById(conversationId);
 	}
 
+	@Override
+	@Transactional
+	public List<Subtopic> findSubTopicsByTopicId(Integer topicId) {		
+		return conversationDAOInterFace.findSubTopicsByTopicId(topicId);
+	}
+
 
 	 
 	

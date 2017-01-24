@@ -23,6 +23,8 @@ public interface ConversationServiceInterFace {
 
 	List<Conversationcomment> findAllCommentById(Integer conversationId);
 
+	List<Subtopic> findSubTopicsByTopicId(Integer topicId);
+
 
 	 
 

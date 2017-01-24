@@ -18,4 +18,5 @@ public interface ConversationDAOInterFace {
 	User findConversationUserByName(String userlist);
 	String addCommentConversation(Conversationcomment conversationcomment);
 	List<Conversationcomment> findAllCommentById(Integer conversationId);
+	List<Subtopic> findSubTopicsByTopicId(Integer topicId);
 }

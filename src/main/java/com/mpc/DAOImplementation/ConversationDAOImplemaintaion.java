@@ -173,6 +173,23 @@ public class ConversationDAOImplemaintaion implements ConversationDAOInterFace{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Subtopic> findSubTopicsByTopicId(Integer topicId) {
+		try {
+			Criteria cr = sessionFactory.getCurrentSession().createCriteria(Subtopic.class);
+			cr.add(Restrictions.eq("topic.topicId", topicId));
+			cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+			if (cr.list() == null || cr.list().isEmpty()) {
+				return null;
+			}
+			return cr.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	 
 
 	 
