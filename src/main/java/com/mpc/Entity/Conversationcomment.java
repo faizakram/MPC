@@ -1,44 +1,41 @@
 package com.mpc.Entity;
 
  
-
-import java.util.Date;
+import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-
-import static javax.persistence.GenerationType.IDENTITY;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("request") 
+@Scope("request")
 @Entity
 @Table(name = "conversationcomment", catalog = "mpc")
 public class Conversationcomment implements java.io.Serializable {
+
  
 	private static final long serialVersionUID = 1L;
 	private Integer commentId;
 	private Conversation conversation;
+	private User user;
 	private String commentText;
-	private Date dateTime;
+	private String dateTime;
 
 	public Conversationcomment() {
 	}
 
-	public Conversationcomment(Conversation conversation, String commentText,
-			Date dateTime) {
+	public Conversationcomment(Conversation conversation, User user,
+			String commentText, String dateTime) {
 		this.conversation = conversation;
+		this.user = user;
 		this.commentText = commentText;
 		this.dateTime = dateTime;
 	}
@@ -64,6 +61,16 @@ public class Conversationcomment implements java.io.Serializable {
 		this.conversation = conversation;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "UserId")
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Column(name = "CommentText", length = 65535)
 	public String getCommentText() {
 		return this.commentText;
@@ -72,14 +79,13 @@ public class Conversationcomment implements java.io.Serializable {
 	public void setCommentText(String commentText) {
 		this.commentText = commentText;
 	}
-
-	@Temporal(TemporalType.TIMESTAMP)
+ 
 	@Column(name = "DateTime", length = 0)
-	public Date getDateTime() {
+	public String getDateTime() {
 		return this.dateTime;
 	}
 
-	public void setDateTime(Date dateTime) {
+	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
 

@@ -1,8 +1,5 @@
 package com.mpc.Entity;
 
- 
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,13 +28,15 @@ public class User implements java.io.Serializable {
 	private Integer userId;
 	private String userName;
 	private Set<Conversation> conversations = new HashSet<Conversation>(0);
+	private Set<Conversationcomment> conversationcomments = new HashSet<Conversationcomment>(0);
 
 	public User() {
 	}
 
-	public User(String userName, Set<Conversation> conversations) {
+	public User(String userName, Set<Conversation> conversations, Set<Conversationcomment> conversationcomments) {
 		this.userName = userName;
 		this.conversations = conversations;
+		this.conversationcomments = conversationcomments;
 	}
 
 	@Id
@@ -64,6 +66,15 @@ public class User implements java.io.Serializable {
 
 	public void setConversations(Set<Conversation> conversations) {
 		this.conversations = conversations;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Conversationcomment> getConversationcomments() {
+		return this.conversationcomments;
+	}
+
+	public void setConversationcomments(Set<Conversationcomment> conversationcomments) {
+		this.conversationcomments = conversationcomments;
 	}
 
 }

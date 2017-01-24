@@ -1,8 +1,6 @@
 package com.mpc.Entity;
 
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,13 +19,14 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 @Component
 @Scope("request")
 @Entity
 @Table(name = "conversation", catalog = "mpc")
 public class Conversation implements java.io.Serializable {
 
- 
+	 
 	private static final long serialVersionUID = 1L;
 	private Integer conversationId;
 	private Subtopic subtopic;

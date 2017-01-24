@@ -23,6 +23,7 @@
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
  <beans:bean id="model" class="org.springframework.web.servlet.ModelAndView" scope="prototype"/>
+<beans:bean id="Response" class="com.mpc.JsonEntity.Response" scope="prototype"/>	
 	<!-- View Resolver (Url Based Resolver And Multi-part) and Page Manage Block -->
 
 	<!-- Stereo Type Annotation For Scan All Packages Block -->

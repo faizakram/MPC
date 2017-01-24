@@ -48,10 +48,13 @@ CREATE TABLE `conversationcomment` (
   `CommentId` int(10) NOT NULL AUTO_INCREMENT,
   `conversationId` int(10) DEFAULT NULL,
   `CommentText` text,
-  `DateTime` datetime DEFAULT NULL,
+  `DateTime` varchar(30) DEFAULT NULL,
+  `UserId` int(10) DEFAULT NULL,
   PRIMARY KEY (`CommentId`),
   KEY `conversationId` (`conversationId`),
-  CONSTRAINT `conversationcomment_ibfk_1` FOREIGN KEY (`conversationId`) REFERENCES `conversation` (`conversationId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `UserId` (`UserId`),
+  CONSTRAINT `conversationcomment_ibfk_1` FOREIGN KEY (`conversationId`) REFERENCES `conversation` (`conversationId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `conversationcomment_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `conversationcomment` */
